@@ -4,7 +4,7 @@
   "description": "Project Managment",
   "main": "index.js",
   "scripts": {
-    "develop": "nodemon node index.js"
+    "dev": "nodemon node index.js"
   },
   "author": "",
   "license": "ISC",
