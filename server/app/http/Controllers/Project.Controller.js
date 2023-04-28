@@ -2,9 +2,9 @@ class ProjectController {
   createProject() {}
   getAllProeject() {}
   getProjectById() {}
-  updateProject() {}
   getAllProjectOfTeam() {}
   getProjectOfUser() {}
+  updateProject() {}
   removeProject() {}
 }
 

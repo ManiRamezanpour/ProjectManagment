@@ -3,6 +3,7 @@ class TeamController {
   inviteUserToTeam() {}
   removeUserById() {}
   updateTeam() {}
+  removeUserFromTeam() {}
 }
 module.exports = {
   TeamController: new TeamController(),

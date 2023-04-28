@@ -1,13 +1,13 @@
-const AuthController = require("../http/Controllers/Auth.Controller");
-const ProjectController = require("../http/Controllers/Project.Controller");
-const TeamController = require("../http/Controllers/Team.Controller");
-const UserController = require("../http/Controllers/User.Controller");
-
-const router = require("express").Router();
-router.use("/team", TeamController);
-router.use("/project", ProjectController);
-router.use("/auth", AuthController);
-router.use("user", UserController);
+const express = require("express");
+const { teamRoutes } = require("./Team.Route");
+const { userRoutes } = require("./User.Route");
+const { authRoutes } = require("./Auth.Route");
+const { projectRoutes } = require("./Project.Route");
+const router = express.Router();
+router.use("/team", teamRoutes);
+router.use("/project", projectRoutes);
+router.use("/auth", authRoutes);
+router.use("user", userRoutes);
 module.exports = {
   AllRoutes: router,
 };
