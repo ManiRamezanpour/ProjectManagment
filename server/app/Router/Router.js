@@ -7,7 +7,7 @@ const router = express.Router();
 router.use("/team", teamRoutes);
 router.use("/project", projectRoutes);
 router.use("/auth", authRoutes);
-router.use("user", userRoutes);
+router.use("/user", userRoutes);
 module.exports = {
   AllRoutes: router,
 };
