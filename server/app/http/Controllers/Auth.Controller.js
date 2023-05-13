@@ -1,9 +1,30 @@
-const { validationResult } = require("express-validator");
+const { UserModel } = require("../../Model/User.Model");
+const { hashString } = require("../../Modules/hashString");
 
 class AuthController {
-  Register(req, res, next) {
-    const { username, password, email, mobild } = req.body;
-    return res.json(req.body);
+  async Register(req, res, next) {
+    try {
+      
+   
+    const { username, password, email, mobile } = req.body;
+    const hashedPassword = hashString(password);
+    const user = await UserModel.create({
+      email,
+      username,
+      password: hashedPassword,
+      mobile,
+    }).catch((err) => {
+      if (err?.code == 11000) {
+        throw {
+          status: 400,
+          message: "username is used please select another",
+        };
+      }
+    });
+    return res.json(user);
+  } catch (error) {
+   next(error)   
+  }
   }
   Login() {}
 
