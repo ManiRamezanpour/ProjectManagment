@@ -1,6 +1,9 @@
 const { AuthController } = require("../http/Controllers/Auth.Controller");
 const { expressValidatorsMapper } = require("../http/Middlewares/CheckErrors");
-const { registerValidators } = require("../http/Validations/Auth.Validation");
+const {
+  registerValidators,
+  loginValidators,
+} = require("../http/Validations/Auth.Validation");
 
 const router = require("express").Router();
 router.post(
@@ -8,6 +11,12 @@ router.post(
   registerValidators(),
   expressValidatorsMapper,
   AuthController.Register
+);
+router.post(
+  "/login",
+  loginValidators(),
+  expressValidatorsMapper,
+  AuthController.Login
 );
 module.exports = {
   authRoutes: router,

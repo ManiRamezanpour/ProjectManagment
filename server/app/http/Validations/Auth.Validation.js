@@ -32,12 +32,6 @@ function registerValidators() {
       .notEmpty()
       .isMobilePhone("fa-IR")
       .withMessage("Phone number is not true"),
-    // .custom((value) => {
-    //   const mobile = UserModel.findOne({ value });
-    //   if (mobile) {
-    //     throw "mobile is selected ";
-    //   }
-    // }),
     body("password")
       .isLength({ min: 6, max: 16 })
       .withMessage("Password most be between 6-16 charecter")
@@ -49,7 +43,25 @@ function registerValidators() {
       }),
   ];
 }
+function loginValidators() {
+  return [
+    body("username")
+      .notEmpty()
+      .withMessage("username cannot empty")
+      .custom((username) => {
+        const usernameRegex = /^[a-z]+[a-z0-9\_\.]{2,}/gi;
+        if (usernameRegex.test(username)) {
+          return true;
+        }
+      }),
+    body("password")
+      .notEmpty()
+      .isLength({ min: 6, max: 16 })
+      .withMessage("password most be 6 - 16"),
+  ];
+}
 
 module.exports = {
   registerValidators,
+  loginValidators,
 };

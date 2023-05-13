@@ -9,3 +9,15 @@ Content-Type: application/json
     "password":"986986",
     "confirm_password":"986986"
 }
+
+###Login
+Post http://localhost:3500/auth/Login
+Content-Type: application/json
+
+{
+    "username":"alirv13",
+    "email":"manirmp135@gmail.com",
+    "mobile":"484848",
+    "password":"986986",
+    "confirm_password":"986986"
+}
