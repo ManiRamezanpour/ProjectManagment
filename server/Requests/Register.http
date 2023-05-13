@@ -11,13 +11,11 @@ Content-Type: application/json
 }
 
 ###Login
-Post http://localhost:3500/auth/Login
+Post http://localhost:3500/auth/login
 Content-Type: application/json
+Authorization: {{$dotenv TOKEN}}
 
 {
     "username":"alirv13",
-    "email":"manirmp135@gmail.com",
-    "mobile":"484848",
-    "password":"986986",
-    "confirm_password":"986986"
+    "password":"986986"
 }
