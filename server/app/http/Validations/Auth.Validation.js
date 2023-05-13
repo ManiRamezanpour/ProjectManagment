@@ -4,7 +4,6 @@ function registerValidators() {
     body("username")
       .notEmpty()
       .custom((value, ctx) => {
-        console.log(value);
         if (value) {
           const usernameRegex = /^[a-z]+[a-z0-9\_\.]{2,}/gi;
           if (usernameRegex.test(value)) {
@@ -23,10 +22,10 @@ function registerValidators() {
       .isLength({ min: 6, max: 16 })
       .withMessage("Password most be between 6-16 charecter")
       .custom((value, ctx) => {
-        console.log(value);
         if (!value) throw "Password cant empty";
-        if (value !== ctx?.req?.body?.confirm_password)
+        if (value !== ctx?.req?.body?.confirm_password) {
           throw "Password Most be equals";
+        }
         return true;
       }),
   ];
