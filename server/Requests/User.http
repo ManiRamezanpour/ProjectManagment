@@ -1,0 +1,4 @@
+http://localhost:3500/user/profile
+Content-Type: application/json
+Authorization:Bearer {{$dotenv TOKEN}}
+

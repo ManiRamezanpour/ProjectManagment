@@ -3,7 +3,7 @@ Post http://localhost:3500/auth/register
 Content-Type: application/json
 
 {
-    "username":"alirv13",
+    "username":"",
     "email":"manirmp135@gmail.com",
     "mobile":"484848",
     "password":"986986",

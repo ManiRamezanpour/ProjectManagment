@@ -44,7 +44,7 @@ class AuthController {
         status: 202,
         success: true,
         message: "your login is success",
-        token: tokenGenerator({username}),
+        token: tokenGenerator({ username }),
       });
     } catch (error) {
       next(error);

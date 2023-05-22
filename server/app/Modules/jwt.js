@@ -5,4 +5,10 @@ function tokenGenerator(payload) {
   });
   return token;
 }
-module.exports = { tokenGenerator };
+function tokenVerfication(token) {
+  const result = jwt.verify(token, process.env.SECRET_KEY);
+  if (!result?.username)
+    throw { status: 404, message: "please login to account" };
+  return result;
+}
+module.exports = { tokenGenerator, tokenVerfication };
