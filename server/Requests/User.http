@@ -1,4 +1,14 @@
-http://localhost:3500/user/profile
+# Get http://localhost:3500/user/profile
+# Content-Type: application/json
+# Authorization:Bearer {{$dotenv TOKEN}}
+
+
+
+POST  http://localhost:3500/user/profile
 Content-Type: application/json
 Authorization:Bearer {{$dotenv TOKEN}}
 
+{
+    "username":"arshiaShirzad"
+    "skills":["programming","sporty","design"]
+}
