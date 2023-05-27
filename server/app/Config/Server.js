@@ -25,9 +25,13 @@ module.exports = class Application {
   }
   configDatabase(DB_URI) {
     const mongoose = require("mongoose");
-    mongoose.connect(DB_URI).catch((error) => {
-      console.log(error);
-      console.log("DB connected ...");
+    mongoose.connect(DB_URI, {
+      useNewUrlParser: true,
+    });
+    const db = mongoose.connection;
+    db.on("error", console.error.bind(console, "connection error: "));
+    db.once("open", function () {
+      console.log("Connected successfully");
     });
   }
   errorHandler() {
