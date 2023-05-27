@@ -8,7 +8,6 @@ async function checkLogin(req, res, next) {
       message: "please login to account",
     };
     const authHeader = req?.headers?.authorization;
-    console.log(authHeader);
     if (!authHeader) throw authError;
     const token = authHeader.split(" ")?.[1];
     if (!token) throw authError;
@@ -16,7 +15,6 @@ async function checkLogin(req, res, next) {
     const { username } = resueltToken;
     const user = await UserModel.findOne({ username }, { password: 0 });
     if (!user) throw { status: 404, message: "please login to account" };
-    console.log(token);
     req.user = user;
     next();
   } catch (error) {

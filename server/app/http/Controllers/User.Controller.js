@@ -16,7 +16,6 @@ class UserController {
   async editProfile(req, res, next) {
     try {
       const data = { ...req.body };
-      console.log(data);
       const userId = req.user._id;
       Object.entries(data).forEach(([key, value]) => {
         const feilds = ["firstname", "username", "skills"];
@@ -40,7 +39,18 @@ class UserController {
   }
   async uploadProfileImage(req, res, next) {
     try {
-      console.log(req.file);
+      const userId = req.user._id;
+      const result = await UserModel.updateOne(
+        { _id: userId },
+        { $set: { imageProfile: filePath } }
+      );
+      if (result.modifiedCount == 0)
+        throw { status: 400, message: "update not been finished" };
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "your profile image updated !",
+      });
     } catch (error) {
       next(error);
     }
