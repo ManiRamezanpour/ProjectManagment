@@ -3,6 +3,12 @@ class UserController {
   async getProfile(req, res, next) {
     try {
       const user = req.user;
+      user.profile_image =
+        req.protocol +
+        "://" +
+        req.get("host") +
+        "/" +
+        user.profile_image.replace(/[\\\\]/gm, "/");
       return res.status(202).json({
         statusCode: 202,
         success: true,
@@ -40,9 +46,10 @@ class UserController {
   async uploadProfileImage(req, res, next) {
     try {
       const userId = req.user._id;
+      const filePath = req.file?.path?.substring(7);
       const result = await UserModel.updateOne(
         { _id: userId },
-        { $set: { imageProfile: filePath } }
+        { $set: { profile_image: filePath } }
       );
       if (result.modifiedCount == 0)
         throw { status: 400, message: "update not been finished" };
