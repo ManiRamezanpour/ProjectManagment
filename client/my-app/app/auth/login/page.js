@@ -2,8 +2,9 @@
 import Input from "@/app/components/input";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import React from "react";
+import http from "@/app/service/axios.config";
 
 const Login = () => {
   const {
@@ -11,7 +12,17 @@ const Login = () => {
     register,
     formState: { errors },
   } = useForm({});
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    http
+      .post("/auth/login", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
 
   return (
     <Suspense

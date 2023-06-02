@@ -1,10 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
 import Input from "@/app/components/input";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
-import axios from "axios";
 import http from "@/app/service/axios.config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,11 +29,18 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // cons / ole.log(data);
     http
       .post("/auth/register", data)
-      .then((res) => toast.success(res.data.message))
-      .catch((err) => toast.error(err.data.message));
+      .then((res) => {
+        toast.success(res.data.message);
+        console.log(res.data.message);
+      })
+      .catch((err) =>
+        toast.error(err.response.message, {
+          theme: "colored",
+        })
+      );
   };
   console.log(errors);
   return (
