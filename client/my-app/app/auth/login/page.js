@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { Suspense, useEffect } from "react";
 import React from "react";
 import http from "@/app/service/axios.config";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const {
     handleSubmit,
@@ -18,6 +19,8 @@ const Login = () => {
       .post("/auth/login", data)
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        toast.success(res.data.message);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -34,8 +37,8 @@ const Login = () => {
     >
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <Input label="Email" register={register} required />
-          <Input label="Password" register={register} required />
+          <Input label="username" register={register} required />
+          <Input label="password" register={register} required />
           <div>
             <button
               type="submit"
